@@ -1,52 +1,87 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class S_BaseEnemy : MonoBehaviour
+public abstract class S_BaseEnemy : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;
-    private float health;
-    [SerializeField] private Slider hp_bar;
+    public float speed;
+    public float moveDistance;
+    public float idleTime;
+    public int hp;
+    public float fireRate;
+    public int damage;
 
-    [SerializeField] private float speedMove;
-    [SerializeField] private float rangeMove;
-    [SerializeField] private float timeImmobility;
+    private bool isMoving;
+    private bool isIdle;
+    private Vector3 targetPosition;
+    private float nextFireTime;
 
-    [SerializeField] private float speedShoot;
-    private float timerShoot;
-
-    private void Start() 
+    protected virtual void Start()
     {
-        health = maxHealth;
-        
-        timerShoot = speedShoot;
+        isMoving = false;
+        isIdle = true;
+        StartCoroutine(BehaviorRoutine());
     }
 
-    private void Update() 
+    protected abstract Vector3 FindNewPosition();
+
+    protected virtual void Update()
     {
-        timerShoot += Time.deltaTime;
-
-        if(timerShoot >= speedShoot)
+        if (isMoving)
         {
-            timerShoot = 0;
-
-            Shoot();
+            MoveToPosition();
+        }
+        else if (!isIdle && Time.time >= nextFireTime)
+        {
+            Fire();
+            nextFireTime = Time.time + 1f / fireRate;
         }
     }
 
-    private void Shoot()
+    private void MoveToPosition()
     {
-        
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            isMoving = false;
+            isIdle = true;
+            StartCoroutine(IdleRoutine());
+        }
     }
 
-    public void GetDamage(float damage)
+    private IEnumerator IdleRoutine()
     {
-        health -= damage;
-
-        if(health < 0) Death();
+        yield return new WaitForSeconds(idleTime);
+        isIdle = false;
+        targetPosition = FindNewPosition();
+        isMoving = true;
     }
 
-    private void Death()
-    {
+    protected abstract void Fire();
 
+    public void TakeDamage(int amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private IEnumerator BehaviorRoutine()
+    {
+        while (true)
+        {
+            if (!isMoving && !isIdle)
+            {
+                targetPosition = FindNewPosition();
+                isMoving = true;
+            }
+            yield return null;
+        }
     }
 }
