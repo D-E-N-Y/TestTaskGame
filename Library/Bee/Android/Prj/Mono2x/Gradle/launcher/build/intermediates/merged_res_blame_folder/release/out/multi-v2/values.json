@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Unity Projects\\test task game\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\Unity Projects\\TestTaskGame\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "D:\\Unity Projects\\test task game\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\src\\main\\res\\values\\strings.xml",
+                    "source": "D:\\Unity Projects\\TestTaskGame\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "2,2",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "D:\\Unity Projects\\test task game\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values\\values.xml",
+                    "source": "D:\\Unity Projects\\TestTaskGame\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,11,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

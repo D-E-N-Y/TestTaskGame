@@ -1,87 +1,125 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class S_BaseEnemy : MonoBehaviour
 {
-    public float speed;
-    public float moveDistance;
-    public float idleTime;
-    public int hp;
-    public float fireRate;
-    public int damage;
-
-    private bool isMoving;
-    private bool isIdle;
-    private Vector3 targetPosition;
-    private float nextFireTime;
-
-    protected virtual void Start()
+    //Health
+    [SerializeField] private float maxHealth;
+    private float health;
+    private bool isDeath;
+    
+    //State
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float moveRange;
+    [SerializeField] private float idleTime;
+    private bool isBehavior, isMoving;
+    
+    //Attack
+    [SerializeField] private float attackSpeed;
+    private float attackTimer;
+    [SerializeField] private float attackRange;
+    private bool isPlayerInAttackRange;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform attackPosition;
+    
+    [SerializeField] private LayerMask _lm;
+    private Animator _anim;
+    private NavMeshAgent _agent;
+    private Transform player;
+    
+    private void Start() 
     {
+        _agent = GetComponent<NavMeshAgent>();
+        _anim = GetComponent<Animator>();
+        player = S_Player.instance.transform;
+        
+        attackTimer = attackSpeed;
+        health = maxHealth;
+
+        isDeath = false;
+        isBehavior = true;
         isMoving = false;
-        isIdle = true;
-        StartCoroutine(BehaviorRoutine());
+
+        StartCoroutine(nameof(Behavior));
+    }
+
+    private void Update() 
+    {
+        if(isDeath) return;
+        
+        isPlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, _lm);
+
+        if(isPlayerInAttackRange && !isMoving)
+        {
+            isBehavior = false;
+            StopCoroutine(nameof(Behavior));
+
+            Attack();
+        }
+        else if(!isBehavior)
+        {
+            isBehavior = true;
+            StartCoroutine(nameof(Behavior));
+        }
+    }
+
+    private IEnumerator Behavior()
+    {
+        while(!isDeath)
+        {
+            yield return new WaitForSeconds(idleTime);
+            
+            isMoving = true;
+            _anim.SetBool("Run", isMoving);
+            _agent.SetDestination(FindNewPosition());
+        
+            // Ожидание завершения перемещения
+            while (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance)
+            {
+                yield return null;
+            }
+
+            isMoving = false;
+            _anim.SetBool("Run", isMoving);
+        }
+    }
+
+    private void Attack()
+    {
+        _agent.SetDestination(transform.position);
+
+        transform.LookAt(player);
+
+        // attackPosition.transform.LookAt(player);
+
+        attackTimer += Time.deltaTime;
+
+        if(attackTimer >= attackSpeed)
+        {
+            attackTimer = 0;
+            
+            Instantiate(bullet, attackPosition.position, attackPosition.rotation);
+        }
     }
 
     protected abstract Vector3 FindNewPosition();
 
-    protected virtual void Update()
+    public void GetDamage(float damage)
     {
-        if (isMoving)
-        {
-            MoveToPosition();
-        }
-        else if (!isIdle && Time.time >= nextFireTime)
-        {
-            Fire();
-            nextFireTime = Time.time + 1f / fireRate;
-        }
+        health -= damage;
+
+        if(health < 0) Death();
     }
 
-    private void MoveToPosition()
+    private void Death()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-        {
-            isMoving = false;
-            isIdle = true;
-            StartCoroutine(IdleRoutine());
-        }
+        isDeath = true;
     }
 
-    private IEnumerator IdleRoutine()
+    private void OnDrawGizmosSelected() 
     {
-        yield return new WaitForSeconds(idleTime);
-        isIdle = false;
-        targetPosition = FindNewPosition();
-        isMoving = true;
-    }
-
-    protected abstract void Fire();
-
-    public void TakeDamage(int amount)
-    {
-        hp -= amount;
-        if (hp <= 0)
-        {
-            Die();
-        }
-    }
-
-    protected virtual void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    private IEnumerator BehaviorRoutine()
-    {
-        while (true)
-        {
-            if (!isMoving && !isIdle)
-            {
-                targetPosition = FindNewPosition();
-                isMoving = true;
-            }
-            yield return null;
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

@@ -3,6 +3,13 @@ using UnityEngine;
 public class S_Ammo : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float damage;
+    private enum Type
+    {
+        Player,
+        Enemy
+    }
+    [SerializeField] private Type type;
 
     private void Update() 
     {
@@ -18,11 +25,18 @@ public class S_Ammo : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(tag == "Enemy")
+        if(tag == "Enemy" && type == Type.Player)
         {
-            S_Player.instance.RemoveTarget(other.gameObject);
+            other.gameObject.GetComponent<S_BaseEnemy>().GetDamage(damage);
             
-            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if(tag == "Player" && type == Type.Enemy)
+        {
+            other.gameObject.GetComponent<S_Player>().GetDamage(damage);
+
+            Destroy(gameObject);
         }
     }
 }

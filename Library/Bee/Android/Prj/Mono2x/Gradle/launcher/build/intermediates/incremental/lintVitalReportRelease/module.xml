@@ -1,6 +1,6 @@
 <lint-module
     format="1"
-    dir="D:\Unity Projects\test task game\Library\Bee\Android\Prj\Mono2x\Gradle\launcher"
+    dir="D:\Unity Projects\TestTaskGame\Library\Bee\Android\Prj\Mono2x\Gradle\launcher"
     name=":launcher"
     type="APP"
     maven="Gradle:launcher:"

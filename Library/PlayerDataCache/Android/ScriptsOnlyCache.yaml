@@ -2,8 +2,15 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - FixedJoystick
+    - S_Ammo
     - S_FollowCamera
+    - S_GroundEnemy
     - S_Player
+    Unity.AI.Navigation.Editor.dll:
+    - Unity.AI.Navigation.Editor.NavMeshAssetManager
+    - Unity.AI.Navigation.Editor.NavigationWindow
+    Unity.AI.Navigation.dll:
+    - Unity.AI.Navigation.NavMeshSurface
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.Graphs.dll:
@@ -24,11 +31,17 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Slider
   serializedClasses:
     UnityEngine.CoreModule:
     - UnityEngine.Events.PersistentCallGroup
     UnityEngine.UI:
+    - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+    - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Slider/SliderEvent
+    - UnityEngine.UI.SpriteState
   methodsToPreserve: []
   sceneClasses:
     Assets/Scenes/GameScene.unity:
@@ -54,6 +67,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -73,20 +88,30 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16744}
     - Class: 114
-      Script: {instanceID: 17280}
+      Script: {instanceID: 17288}
     - Class: 114
-      Script: {instanceID: 17826}
+      Script: {instanceID: 17842}
     - Class: 114
-      Script: {instanceID: 18028}
+      Script: {instanceID: 17982}
     - Class: 114
-      Script: {instanceID: 20854}
+      Script: {instanceID: 18056}
     - Class: 114
-      Script: {instanceID: 20956}
+      Script: {instanceID: 20396}
     - Class: 114
-      Script: {instanceID: 21448}
+      Script: {instanceID: 20954}
     - Class: 114
-      Script: {instanceID: 72592}
+      Script: {instanceID: 21058}
+    - Class: 114
+      Script: {instanceID: 21558}
+    - Class: 114
+      Script: {instanceID: 21776}
+    - Class: 114
+      Script: {instanceID: 29052}
+    - Class: 114
+      Script: {instanceID: 60486}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -94,7 +119,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -103,6 +134,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -321,6 +354,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine
     namespaceName: Cinemachine
     className: CinemachineHardLookAt
+  - hash:
+      serializedVersion: 2
+      Hash: 9a0d8a5b957c1e9af5e00bf8a6fa71ec
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_Ammo
   - hash:
       serializedVersion: 2
       Hash: fce9b835d1e8b08e7ecea8da19f21986
@@ -953,7 +992,7 @@ ScriptsOnlyBuild:
     className: CinemachineOrbitalTransposer
   - hash:
       serializedVersion: 2
-      Hash: a17cf3929336fddee037341d30431756
+      Hash: ab5ddae4e11985b4541729648fe4d93f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: S_Player
@@ -1077,6 +1116,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 902a16334f72d87e479f3dc3c39d4153
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_FollowCamera
   - hash:
       serializedVersion: 2
       Hash: f669be52680c88846b2093fd41d1e06e
@@ -1373,11 +1418,35 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 902a16334f72d87e479f3dc3c39d4153
+      Hash: 356a3f5e262f5102fbeb9a636340a090
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: S_FollowCamera
+    className: S_GroundEnemy
+  - hash:
+      serializedVersion: 2
+      Hash: 061a5d77ce0aa52a60c21c566c6d8af2
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshModifierVolume
+  - hash:
+      serializedVersion: 2
+      Hash: d55992199bd2f5a5502658391cdf8ba7
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshSurface
+  - hash:
+      serializedVersion: 2
+      Hash: 68f2cb287af2eee1f639824485a3402b
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 8a2f78c25d5e92eb97ee5544a162a2e9
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshLink
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity
-  playerPath: D:/Unity Projects/test task game/test task game.apk
+  playerPath: D:/Unity Projects/TestTaskGame/test task game.apk

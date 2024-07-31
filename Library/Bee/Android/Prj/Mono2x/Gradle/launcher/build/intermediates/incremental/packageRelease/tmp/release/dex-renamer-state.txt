@@ -1,4 +1,4 @@
-#Tue Jul 30 17:04:51 EEST 2024
-base.0=D\:\\Unity Projects\\test task game\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+#Wed Jul 31 17:21:18 EEST 2024
+base.0=D\:\\Unity Projects\\TestTaskGame\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

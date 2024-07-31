@@ -301,6 +301,7 @@
 -r:"D:/Programs/Unity/Hub/Editor/2022.3.31f1/Editor/Data/PlaybackEngines/AndroidPlayer/Variations/mono/Managed/UnityEngine.XRModule.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Cinemachine.ref.dll"
+-r:"Library/Bee/artifacts/1300b0aP.dag/Unity.AI.Navigation.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.TextMeshPro.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.Timeline.ref.dll"
@@ -317,7 +318,10 @@
 "Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/FloatingJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
+"Assets/Scripts/Ammo/S_Ammo.cs"
 "Assets/Scripts/Camera/S_FollowCamera.cs"
+"Assets/Scripts/Enemy/S_BaseEnemy.cs"
+"Assets/Scripts/Enemy/S_GroundEnemy.cs"
 "Assets/Scripts/Player/S_Player.cs"
 -langversion:9.0
 /deterministic
