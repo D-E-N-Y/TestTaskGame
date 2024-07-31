@@ -9,6 +9,6 @@ public class S_FollowCamera : MonoBehaviour
     {
         if(!target) return;
 
-        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, 11f, target.position.z - 7f), followSpeed * Time.fixedDeltaTime);   
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, 17f, target.position.z - 10f), followSpeed * Time.fixedDeltaTime);   
     }
 }

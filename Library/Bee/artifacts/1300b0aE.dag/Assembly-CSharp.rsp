@@ -369,6 +369,7 @@
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
 "Assets/Scripts/Ammo/S_Ammo.cs"
 "Assets/Scripts/Camera/S_FollowCamera.cs"
+"Assets/Scripts/Enemy/S_BaseEnemy.cs"
 "Assets/Scripts/Player/S_Player.cs"
 -langversion:9.0
 /deterministic

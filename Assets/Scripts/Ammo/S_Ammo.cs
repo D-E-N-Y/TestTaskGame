@@ -13,10 +13,16 @@ public class S_Ammo : MonoBehaviour
     {
         string tag = other.gameObject.tag;
 
-        if(tag == "Barrier" || tag == "Enemy")
+        if(tag == "Barrier")
         {
-            Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+
+        if(tag == "Enemy")
+        {
+            S_Player.instance.RemoveTarget(other.gameObject);
+            
+            Destroy(other.gameObject);
         }
     }
 }
