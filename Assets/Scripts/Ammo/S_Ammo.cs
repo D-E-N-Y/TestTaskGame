@@ -27,7 +27,7 @@ public class S_Ammo : MonoBehaviour
 
         if(tag == "Enemy" && type == Type.Player)
         {
-            other.gameObject.GetComponent<S_BaseEnemy>().GetDamage(damage);
+            // other.gameObject.GetComponent<S_BaseEnemy>().GetDamage(damage);
             
             Destroy(gameObject);
         }

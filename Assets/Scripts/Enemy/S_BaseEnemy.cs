@@ -25,10 +25,10 @@ public abstract class S_BaseEnemy : MonoBehaviour
     
     [SerializeField] private LayerMask _lm;
     private Animator _anim;
-    private NavMeshAgent _agent;
+    protected NavMeshAgent _agent;
     private Transform player;
     
-    private void Start() 
+    protected virtual void Start() 
     {
         _agent = GetComponent<NavMeshAgent>();
         _anim = GetComponent<Animator>();
@@ -71,18 +71,24 @@ public abstract class S_BaseEnemy : MonoBehaviour
             yield return new WaitForSeconds(idleTime);
             
             isMoving = true;
-            _anim.SetBool("Run", isMoving);
-            _agent.SetDestination(FindNewPosition());
-        
-            // Ожидание завершения перемещения
-            while (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance)
-            {
-                yield return null;
-            }
+            
+            Move();
 
             isMoving = false;
-            _anim.SetBool("Run", isMoving);
+            // _anim.SetBool("Run", isMoving);
         }
+    }
+    
+    protected abstract void Move();
+
+    protected void StartMoving()
+    {
+        isMoving = true;
+    }
+
+    protected void StopMoving()
+    {
+        isMoving = false;
     }
 
     private void Attack()
@@ -103,8 +109,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
         }
     }
 
-    protected abstract Vector3 FindNewPosition();
-
+    
     public void GetDamage(float damage)
     {
         health -= damage;
