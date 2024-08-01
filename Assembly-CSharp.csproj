@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Money\S_Money.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Scripts\Enemy\S_BaseEnemy.cs" />
+    <Compile Include="Assets\Scripts\Timer\S_TimerGame.cs" />
     <Compile Include="Assets\Scripts\Victory\S_Victory.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />

@@ -381,6 +381,7 @@
 "Assets/Scripts/Player/S_Player.cs"
 "Assets/Scripts/Settings/S_MainMenu.cs"
 "Assets/Scripts/Settings/S_SceneSettings.cs"
+"Assets/Scripts/Timer/S_TimerGame.cs"
 "Assets/Scripts/Victory/S_Victory.cs"
 -langversion:9.0
 /deterministic
