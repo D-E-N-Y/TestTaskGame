@@ -83,6 +83,8 @@ public abstract class S_BaseEnemy : MonoBehaviour
             yield return new WaitForSeconds(idleTime);
             
             isMoving = true;
+
+            if(_anim) _anim.SetBool("Run", true);
             
             _agent.SetDestination(FindMovePosition());
             
@@ -99,6 +101,8 @@ public abstract class S_BaseEnemy : MonoBehaviour
                 }
                 yield return null;
             }
+
+            if(_anim) _anim.SetBool("Run", false);
 
             isMoving = false;
         }

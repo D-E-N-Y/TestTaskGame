@@ -525,9 +525,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7890650199620789422}
-  - component: {fileID: 7992461102613920901}
   - component: {fileID: 201814933143342911}
   - component: {fileID: 8204302777738578562}
+  - component: {fileID: -8720488983493215185}
   - component: {fileID: 2134416058927928739}
   - component: {fileID: 9146972382695118957}
   m_Layer: 10
@@ -556,22 +556,6 @@ Transform:
   - {fileID: 2741096218194424633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &7992461102613920901
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6551891964048276301}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: b13df63982ffc744db2c0809b4977e14, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: b13df63982ffc744db2c0809b4977e14, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!54 &201814933143342911
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -622,6 +606,22 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!111 &-8720488983493215185
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551891964048276301}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b13df63982ffc744db2c0809b4977e14, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: b13df63982ffc744db2c0809b4977e14, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!195 &2134416058927928739
 NavMeshAgent:
   m_ObjectHideFlags: 0
