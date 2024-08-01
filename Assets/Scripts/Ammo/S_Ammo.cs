@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class S_Ammo : MonoBehaviour
 {
+    // параметры снаряда
     [SerializeField] private float speed;
     [SerializeField] private float damage;
+
+    // паретр, какому юниту пренадлежит снаряд
     private enum Type
     {
         Player,
@@ -11,11 +14,12 @@ public class S_Ammo : MonoBehaviour
     }
     [SerializeField] private Type type;
 
+    // перемещение снаряда
     private void Update() 
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
-
+    
     private void OnTriggerEnter(Collider other) 
     {
         string tag = other.gameObject.tag;
@@ -27,7 +31,7 @@ public class S_Ammo : MonoBehaviour
 
         if(tag == "Enemy" && type == Type.Player)
         {
-            // other.gameObject.GetComponent<S_BaseEnemy>().GetDamage(damage);
+            other.gameObject.GetComponent<S_BaseEnemy>().GetDamage(damage);
             
             Destroy(gameObject);
         }

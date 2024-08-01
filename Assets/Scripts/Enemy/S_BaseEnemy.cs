@@ -4,24 +4,26 @@ using UnityEngine.AI;
 
 public abstract class S_BaseEnemy : MonoBehaviour
 {
-    //Health
+    // параметры здоровья
     [SerializeField] private float maxHealth;
     private float health;
     private bool isDeath;
     
-    //State
+    // парематры движения и неподвижности
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float moveRange;
     [SerializeField] private float idleTime;
     private bool isBehavior, isMoving;
     
-    //Attack
+    // параматеры атаки
+    [SerializeField] private float meleeDamage;
     [SerializeField] private float attackSpeed;
     private float attackTimer;
     [SerializeField] private float attackRange;
     private bool isPlayerInAttackRange;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform attackPosition;
+    
     
     [SerializeField] private LayerMask _lm;
     private Animator _anim;
@@ -41,6 +43,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
         isBehavior = true;
         isMoving = false;
 
+        // в начале игры запускаем обычное поведение врага
         StartCoroutine(nameof(Behavior));
     }
 
@@ -48,6 +51,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
     {
         if(isDeath) return;
         
+        // область атаки противника
         isPlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, _lm);
 
         if(isPlayerInAttackRange && !isMoving)
@@ -64,6 +68,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
         }
     }
 
+    // обычное повеление протвника    
     private IEnumerator Behavior()
     {
         while(!isDeath)
@@ -72,33 +77,29 @@ public abstract class S_BaseEnemy : MonoBehaviour
             
             isMoving = true;
             
-            Move();
+            _agent.SetDestination(FindMovePosition());
+
+            // Ожидание завершения перемещения
+            while (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance)
+            {
+                yield return null;
+            }
 
             isMoving = false;
-            // _anim.SetBool("Run", isMoving);
         }
     }
     
-    protected abstract void Move();
+    // метод нахождение позиции для перемещения
+    protected abstract Vector3 FindMovePosition();
 
-    protected void StartMoving()
-    {
-        isMoving = true;
-    }
-
-    protected void StopMoving()
-    {
-        isMoving = false;
-    }
-
+    // поведения атаки
     private void Attack()
     {
+        // останавливаем врага и поворачиваемся в сторону игрока
         _agent.SetDestination(transform.position);
-
         transform.LookAt(player);
 
-        // attackPosition.transform.LookAt(player);
-
+        // запускаем таймер атаки
         attackTimer += Time.deltaTime;
 
         if(attackTimer >= attackSpeed)
@@ -109,7 +110,16 @@ public abstract class S_BaseEnemy : MonoBehaviour
         }
     }
 
+    // наносение игроку урон если тот подошел слишком близко к врагу
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            other.gameObject.GetComponent<S_Player>().GetDamage(meleeDamage);
+        }
+    }
     
+    // получание урона
     public void GetDamage(float damage)
     {
         health -= damage;
@@ -117,11 +127,15 @@ public abstract class S_BaseEnemy : MonoBehaviour
         if(health < 0) Death();
     }
 
+    // метод смерти
     private void Death()
     {
         isDeath = true;
+
+        Destroy(this);
     }
 
+    // отрисовка зоны атаки
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red;

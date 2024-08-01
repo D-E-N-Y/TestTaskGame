@@ -4,9 +4,12 @@ using UnityEngine.UI;
 
 public class S_Player : MonoBehaviour
 {
+    // парметры движения
     [SerializeField] private float speedMove;
     private Rigidbody _rb;
+    [SerializeField] private FixedJoystick _joystick;
 
+    // параметры жизни
     [SerializeField] private float maxHealth;
     [SerializeField] private Slider hp_bar;
     [SerializeField] private GameObject _hitParticle;
@@ -14,17 +17,20 @@ public class S_Player : MonoBehaviour
     private bool isDeath;
     private Camera _cam;
 
+    // паметры атаки
     [SerializeField] private float shootSpeed;
     private float shootTime;
     private bool isCanShoot;
     private bool isFindEnemy;
-
+    
+    // список врагов, которые можно атаковать
     private List<GameObject> targets = new List<GameObject>();
-
+    
+    // параметры пули
     [SerializeField] private GameObject ammo;
     [SerializeField] private Transform shootPosition;
     
-    [SerializeField] private FixedJoystick _joystick;
+    
     private Animator _anim;
 
     public static S_Player instance;
@@ -54,16 +60,17 @@ public class S_Player : MonoBehaviour
         
         RotateHealthBar();
         
+        if(!isCanShoot) return;
+
+        // скорость стрельбы игрока
         shootTime += Time.deltaTime;
 
-        if(shootTime >= shootSpeed && isCanShoot && isFindEnemy)
+        if(shootTime >= shootSpeed && isFindEnemy)
         {
             shootTime = 0;
 
             Shoot();
         }
-
-        if(Input.GetKeyDown(KeyCode.D)) GetDamage(10f);
     }
 
     private void FixedUpdate() 
@@ -73,6 +80,7 @@ public class S_Player : MonoBehaviour
         Move();
     }
 
+    // метод атаки
     private void Shoot()
     {
         if(!targets[0]) return;
@@ -85,6 +93,7 @@ public class S_Player : MonoBehaviour
         Instantiate(ammo, shootPosition.position, shootPosition.rotation);
     }
 
+    // метод движения
     private void Move()
     {
         _rb.velocity = new Vector3(_joystick.Horizontal * speedMove, _rb.velocity.y, _joystick.Vertical * speedMove);
@@ -103,6 +112,7 @@ public class S_Player : MonoBehaviour
         }
     }
 
+    // метод получение урона
     public void GetDamage(float damage)
     {
         health -= damage;
@@ -114,21 +124,25 @@ public class S_Player : MonoBehaviour
         if(health < 0) Death();
     }
 
+    // метод смерти
     private void Death()
     {
         isDeath = true;
     }
 
+    // метод вращения полоски хп в сторону камеры
     private void RotateHealthBar()
     {
         hp_bar.transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
     }
-
+    
+    // обновление значения в полоске хп
     private void UpdateHealthBar()
     {
         hp_bar.value = health / maxHealth;
     }
 
+    
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.tag == "Enemy")
