@@ -13,6 +13,7 @@ public class S_Player : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private Slider hp_bar;
     [SerializeField] private GameObject _hitParticle;
+    [SerializeField] private GameObject losePanel;
     private float health;
     private bool isDeath;
     private Camera _cam;
@@ -184,6 +185,9 @@ public class S_Player : MonoBehaviour
     private void Death()
     {
         isDeath = true;
+
+        losePanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     // метод вращения полоски хп в сторону камеры
