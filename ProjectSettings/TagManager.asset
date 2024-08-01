@@ -18,8 +18,8 @@ TagManager:
   - Enemy
   - Barrier
   - Ground
-  - 
-  - 
+  - FlyingEnemy
+  - GroundEnemy
   - 
   - 
   - 

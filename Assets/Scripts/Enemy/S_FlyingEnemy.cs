@@ -8,6 +8,8 @@ public class S_FlyingEnemy : S_BaseEnemy
     {
         base.Start();
 
+        Physics.IgnoreLayerCollision(10, 11);
+
         _agent.baseOffset = height;
         _agent.avoidancePriority = 50;
     }
