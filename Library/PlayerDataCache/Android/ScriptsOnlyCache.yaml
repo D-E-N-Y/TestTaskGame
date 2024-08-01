@@ -9,6 +9,8 @@ ScriptsOnlyBuild:
     - S_MainMenu
     - S_Player
     - S_SceneSettings
+    - S_SpawnEnemy
+    - S_Victory
     Unity.AI.Navigation.Editor.dll:
     - Unity.AI.Navigation.Editor.NavigationWindow
     Unity.AI.Navigation.dll:
@@ -18,10 +20,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -57,6 +57,30 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: S_MainMenu
     methodName: StartButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: ExitButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: ExitButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: ExitButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: PauseButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: RestartButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: RestartButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: ContinueButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: RestartButtonPressed
   - assembly: Assembly-CSharp
     fullTypeName: S_SceneSettings
     methodName: ContinueButtonPressed
@@ -136,20 +160,20 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20796}
     - Class: 114
-      Script: {instanceID: 21026}
+      Script: {instanceID: 21584}
     - Class: 114
-      Script: {instanceID: 21636}
+      Script: {instanceID: 21638}
     - Class: 114
-      Script: {instanceID: 21860}
+      Script: {instanceID: 21772}
     - Class: 114
-      Script: {instanceID: 22588}
+      Script: {instanceID: 22592}
     - Class: 114
-      Script: {instanceID: 101828}
+      Script: {instanceID: 23186}
+    - Class: 114
+      Script: {instanceID: 23578}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -164,8 +188,6 @@ ScriptsOnlyBuild:
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
-      Script: {instanceID: 0}
-    - Class: 208
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -215,9 +237,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20796}
     - Class: 114
-      Script: {instanceID: 21636}
+      Script: {instanceID: 21470}
     - Class: 114
-      Script: {instanceID: 288784}
+      Script: {instanceID: 21638}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -233,6 +255,113 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/TestGameScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 111
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16702}
+    - Class: 114
+      Script: {instanceID: 16746}
+    - Class: 114
+      Script: {instanceID: 17300}
+    - Class: 114
+      Script: {instanceID: 17860}
+    - Class: 114
+      Script: {instanceID: 18002}
+    - Class: 114
+      Script: {instanceID: 18076}
+    - Class: 114
+      Script: {instanceID: 18394}
+    - Class: 114
+      Script: {instanceID: 18968}
+    - Class: 114
+      Script: {instanceID: 20444}
+    - Class: 114
+      Script: {instanceID: 20704}
+    - Class: 114
+      Script: {instanceID: 20796}
+    - Class: 114
+      Script: {instanceID: 21584}
+    - Class: 114
+      Script: {instanceID: 21638}
+    - Class: 114
+      Script: {instanceID: 21864}
+    - Class: 114
+      Script: {instanceID: 22592}
+    - Class: 114
+      Script: {instanceID: 23578}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 208
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -1119,12 +1248,6 @@ ScriptsOnlyBuild:
     className: CinemachineOrbitalTransposer
   - hash:
       serializedVersion: 2
-      Hash: 600669e0cd6915129af4325c6b545e86
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: S_Player
-  - hash:
-      serializedVersion: 2
       Hash: 488f3922fa1ec8f7d72cbb04b88bf18d
     assemblyName: Cinemachine
     namespaceName: Cinemachine
@@ -1173,6 +1296,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 104e2e05e30588fd583eec2f331cd896
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_MainMenu
+  - hash:
+      serializedVersion: 2
       Hash: da5a949a0bbd2ff91bc51c5805c2c41f
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1183,6 +1312,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: JoystickSetterExample
+  - hash:
+      serializedVersion: 2
+      Hash: 1aa873fc26e4c01d4bbdc7f14ddf8c69
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_SceneSettings
   - hash:
       serializedVersion: 2
       Hash: 4f353524ce6564e40764f1ea080b2d85
@@ -1237,6 +1372,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine
     namespaceName: Cinemachine
     className: CinemachineImpulseListener
+  - hash:
+      serializedVersion: 2
+      Hash: fbc005fb5670bd58a1aad819f374dd26
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_Victory
   - hash:
       serializedVersion: 2
       Hash: 8bbce9932f67ad8e7f4eefec87800f94
@@ -1497,6 +1638,12 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: a75e69fdb8eabecdce95acd35a91763b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_SpawnEnemy
+  - hash:
+      serializedVersion: 2
       Hash: c8efb8be0478240d4791acc3735f449b
     assemblyName: Cinemachine
     namespaceName: 
@@ -1551,18 +1698,13 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 1aa873fc26e4c01d4bbdc7f14ddf8c69
+      Hash: 0c202135da250c6cdacc58d3a21b782f
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: S_SceneSettings
-  - hash:
-      serializedVersion: 2
-      Hash: 104e2e05e30588fd583eec2f331cd896
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: S_MainMenu
+    className: S_Player
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainMenuScene.unity
   - Assets/Scenes/GameScene.unity
+  - Assets/Scenes/TestGameScene.unity
   playerPath: D:/Unity Projects/TestTaskGame/test task game.apk

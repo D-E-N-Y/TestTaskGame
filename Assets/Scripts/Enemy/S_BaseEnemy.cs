@@ -161,6 +161,8 @@ public abstract class S_BaseEnemy : MonoBehaviour
     {
         isDeath = true;
 
+        _cam.GetComponent<S_Money>().AddCoin();
+
         Destroy(gameObject);
     }
 
