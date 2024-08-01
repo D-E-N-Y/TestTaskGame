@@ -85,10 +85,18 @@ public abstract class S_BaseEnemy : MonoBehaviour
             isMoving = true;
             
             _agent.SetDestination(FindMovePosition());
+            
+            float moveStartTime = Time.time;
 
             // Ожидание завершения перемещения
             while (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance)
             {
+                if (Time.time - moveStartTime > 5f)
+                {
+                    // Прекращение движения, если истекло максимальное время
+                    _agent.SetDestination(transform.position);
+                    break;
+                }
                 yield return null;
             }
 
