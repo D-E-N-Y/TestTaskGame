@@ -16,7 +16,7 @@ public class S_SpawnEnemy : MonoBehaviour
         
         foreach(var spawnPoint in spawnPositions)
         {
-            Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPoint.position, Quaternion.identity);
+            Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPoint.position, spawnPoint.rotation);
         }
     }    
 }
