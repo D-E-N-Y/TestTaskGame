@@ -25,7 +25,7 @@ public class S_Ammo : MonoBehaviour
     {
         string tag = other.gameObject.tag;
 
-        if(tag == "Barrier")
+        if(tag == "Barrier" || tag == "Ground")
         {
             Destroy(Instantiate(hit, transform.position, Quaternion.identity), 0.3f);
             
