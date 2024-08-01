@@ -49435,13 +49435,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMove: 3
+  _joystick: {fileID: 1034999451}
   maxHealth: 100
   hp_bar: {fileID: 350093458}
   _hitParticle: {fileID: 439708745124657376, guid: 20314302c016154488f828f567f31487, type: 3}
   shootSpeed: 0.3
   ammo: {fileID: 7891903891993359832, guid: 425d10fc769437c459ee80cccde8a419, type: 3}
   shootPosition: {fileID: 1220015154}
-  _joystick: {fileID: 1034999451}
 --- !u!54 &1474529513
 Rigidbody:
   m_ObjectHideFlags: 0

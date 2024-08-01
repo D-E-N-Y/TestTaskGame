@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  damage: 10
+  hit: {fileID: 7582215495492865255, guid: 43201fe807fd1f2479314b97b5be5026, type: 3}
+  type: 0
 --- !u!54 &3869122016702709111
 Rigidbody:
   m_ObjectHideFlags: 0

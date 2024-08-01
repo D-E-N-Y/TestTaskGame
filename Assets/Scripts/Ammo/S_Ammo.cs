@@ -5,6 +5,7 @@ public class S_Ammo : MonoBehaviour
     // параметры снаряда
     [SerializeField] private float speed;
     [SerializeField] private float damage;
+    [SerializeField] private GameObject hit;
 
     // паретр, какому юниту пренадлежит снаряд
     private enum Type
@@ -26,6 +27,8 @@ public class S_Ammo : MonoBehaviour
 
         if(tag == "Barrier")
         {
+            Destroy(Instantiate(hit, transform.position, Quaternion.identity), 0.3f);
+            
             Destroy(gameObject);
         }
 
