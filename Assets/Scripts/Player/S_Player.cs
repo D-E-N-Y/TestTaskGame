@@ -76,7 +76,12 @@ public class S_Player : MonoBehaviour
         {
             CheckForEnemies();
             
+            _anim.SetBool("Shoot", true);
             Attack();
+        }
+        else
+        {
+            _anim.SetBool("Shoot", false);
         }
     }
 
