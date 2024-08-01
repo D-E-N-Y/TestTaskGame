@@ -321,8 +321,11 @@
 "Assets/Scripts/Ammo/S_Ammo.cs"
 "Assets/Scripts/Camera/S_FollowCamera.cs"
 "Assets/Scripts/Enemy/S_BaseEnemy.cs"
+"Assets/Scripts/Enemy/S_FlyingEnemy.cs"
 "Assets/Scripts/Enemy/S_GroundEnemy.cs"
 "Assets/Scripts/Player/S_Player.cs"
+"Assets/Scripts/Settings/S_MainMenu.cs"
+"Assets/Scripts/Settings/S_SceneSettings.cs"
 -langversion:9.0
 /deterministic
 /optimize+

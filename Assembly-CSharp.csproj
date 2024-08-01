@@ -64,6 +64,7 @@
     <Analyzer Include="D:\Programs\Unity\Hub\Editor\2022.3.31f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Settings\S_MainMenu.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Scripts\Player\S_Player.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\Enemy\S_FlyingEnemy.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
     <Compile Include="Assets\Scripts\Enemy\S_GroundEnemy.cs" />
+    <Compile Include="Assets\Scripts\Settings\S_SceneSettings.cs" />
     <Compile Include="Assets\Scripts\Camera\S_FollowCamera.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Scripts\Ammo\S_Ammo.cs" />

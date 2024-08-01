@@ -26,7 +26,6 @@ public abstract class S_BaseEnemy : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform attackPosition;
     
-    
     [SerializeField] private LayerMask _lm;
     private Camera _cam;
     private Animator _anim;
@@ -154,7 +153,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
     {
         isDeath = true;
 
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     // отрисовка зоны атаки

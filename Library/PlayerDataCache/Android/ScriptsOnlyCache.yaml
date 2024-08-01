@@ -3,11 +3,13 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - FixedJoystick
     - S_Ammo
+    - S_FlyingEnemy
     - S_FollowCamera
     - S_GroundEnemy
+    - S_MainMenu
     - S_Player
+    - S_SceneSettings
     Unity.AI.Navigation.Editor.dll:
-    - Unity.AI.Navigation.Editor.NavMeshAssetManager
     - Unity.AI.Navigation.Editor.NavigationWindow
     Unity.AI.Navigation.dll:
     - Unity.AI.Navigation.NavMeshSurface
@@ -28,21 +30,45 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
   serializedClasses:
     UnityEngine.CoreModule:
+    - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.PersistentListenerMode
     UnityEngine.UI:
     - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
+    - UnityEngine.UI.FontData
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: S_MainMenu
+    methodName: ExitButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_MainMenu
+    methodName: StartButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: ContinueButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: RestartButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: PauseButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: S_SceneSettings
+    methodName: ExitButtonPressed
   sceneClasses:
     Assets/Scenes/GameScene.unity:
     - Class: 1
@@ -85,31 +111,43 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
+    - Class: 111
+      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16744}
+      Script: {instanceID: 16702}
     - Class: 114
-      Script: {instanceID: 17288}
+      Script: {instanceID: 16746}
     - Class: 114
-      Script: {instanceID: 17842}
+      Script: {instanceID: 17300}
     - Class: 114
-      Script: {instanceID: 17982}
+      Script: {instanceID: 17860}
     - Class: 114
-      Script: {instanceID: 18056}
+      Script: {instanceID: 18002}
     - Class: 114
-      Script: {instanceID: 20396}
+      Script: {instanceID: 18076}
     - Class: 114
-      Script: {instanceID: 20954}
+      Script: {instanceID: 18394}
     - Class: 114
-      Script: {instanceID: 21058}
+      Script: {instanceID: 18968}
     - Class: 114
-      Script: {instanceID: 21558}
+      Script: {instanceID: 20444}
     - Class: 114
-      Script: {instanceID: 21776}
+      Script: {instanceID: 20704}
     - Class: 114
-      Script: {instanceID: 29052}
+      Script: {instanceID: 20796}
     - Class: 114
-      Script: {instanceID: 60486}
+      Script: {instanceID: 21026}
+    - Class: 114
+      Script: {instanceID: 21636}
+    - Class: 114
+      Script: {instanceID: 21860}
+    - Class: 114
+      Script: {instanceID: 22588}
+    - Class: 114
+      Script: {instanceID: 101828}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -127,6 +165,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 199
       Script: {instanceID: 0}
+    - Class: 208
+      Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
     - Class: 222
@@ -137,7 +177,70 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 238
       Script: {instanceID: 0}
+    Assets/Scenes/MainMenuScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 16702}
+    - Class: 114
+      Script: {instanceID: 16746}
+    - Class: 114
+      Script: {instanceID: 17860}
+    - Class: 114
+      Script: {instanceID: 18076}
+    - Class: 114
+      Script: {instanceID: 18394}
+    - Class: 114
+      Script: {instanceID: 20796}
+    - Class: 114
+      Script: {instanceID: 21636}
+    - Class: 114
+      Script: {instanceID: 288784}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 55060a7bf226ac385ce19ebd450f199f
@@ -356,7 +459,7 @@ ScriptsOnlyBuild:
     className: CinemachineHardLookAt
   - hash:
       serializedVersion: 2
-      Hash: 9a0d8a5b957c1e9af5e00bf8a6fa71ec
+      Hash: 210371298d604ec4fcb0b4a8f3ee7b6b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: S_Ammo
@@ -582,6 +685,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnCollisionExit2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 3bee073615be8bb3d6c119f3e4837cbc
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_FlyingEnemy
   - hash:
       serializedVersion: 2
       Hash: 0a3f328f3ea906bbbcf794f4c27ee59d
@@ -818,6 +927,12 @@ ScriptsOnlyBuild:
     className: PostProcessResources
   - hash:
       serializedVersion: 2
+      Hash: 8a2f78c25d5e92eb97ee5544a162a2e9
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshLink
+  - hash:
+      serializedVersion: 2
       Hash: f2098fcd8ee983a05ec192f63904298f
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -932,6 +1047,12 @@ ScriptsOnlyBuild:
     className: Vignette
   - hash:
       serializedVersion: 2
+      Hash: 061a5d77ce0aa52a60c21c566c6d8af2
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshModifierVolume
+  - hash:
+      serializedVersion: 2
       Hash: c65fb8f721cc4462e7a642974c37d3c0
     assemblyName: Unity.Postprocessing.Runtime
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -948,6 +1069,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UIElements
     className: PanelEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: d55992199bd2f5a5502658391cdf8ba7
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshSurface
   - hash:
       serializedVersion: 2
       Hash: 0515d3107a65fdbab3ad88c2c94de99f
@@ -992,7 +1119,7 @@ ScriptsOnlyBuild:
     className: CinemachineOrbitalTransposer
   - hash:
       serializedVersion: 2
-      Hash: ab5ddae4e11985b4541729648fe4d93f
+      Hash: 600669e0cd6915129af4325c6b545e86
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: S_Player
@@ -1002,12 +1129,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine
     namespaceName: Cinemachine
     className: CinemachineBrain
-  - hash:
-      serializedVersion: 2
-      Hash: 540882762544409cc4530e60db00e951
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 560346f4cbb7006f1b0bb6c77805d7ec
@@ -1092,6 +1213,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
     className: MarkerTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 68f2cb287af2eee1f639824485a3402b
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshModifier
   - hash:
       serializedVersion: 2
       Hash: 4bf8d6f446d3cafb03a885a5cf6f2cd9
@@ -1274,6 +1401,12 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
+      Hash: b70b0065059ed3333b1730e7112babac
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_GroundEnemy
+  - hash:
+      serializedVersion: 2
       Hash: 67272c9c30c50b68ef1ce72ac0191c57
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1418,35 +1551,18 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 356a3f5e262f5102fbeb9a636340a090
+      Hash: 1aa873fc26e4c01d4bbdc7f14ddf8c69
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: S_GroundEnemy
+    className: S_SceneSettings
   - hash:
       serializedVersion: 2
-      Hash: 061a5d77ce0aa52a60c21c566c6d8af2
-    assemblyName: Unity.AI.Navigation
-    namespaceName: Unity.AI.Navigation
-    className: NavMeshModifierVolume
-  - hash:
-      serializedVersion: 2
-      Hash: d55992199bd2f5a5502658391cdf8ba7
-    assemblyName: Unity.AI.Navigation
-    namespaceName: Unity.AI.Navigation
-    className: NavMeshSurface
-  - hash:
-      serializedVersion: 2
-      Hash: 68f2cb287af2eee1f639824485a3402b
-    assemblyName: Unity.AI.Navigation
-    namespaceName: Unity.AI.Navigation
-    className: NavMeshModifier
-  - hash:
-      serializedVersion: 2
-      Hash: 8a2f78c25d5e92eb97ee5544a162a2e9
-    assemblyName: Unity.AI.Navigation
-    namespaceName: Unity.AI.Navigation
-    className: NavMeshLink
+      Hash: 104e2e05e30588fd583eec2f331cd896
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: S_MainMenu
   platform: 13
   scenePathNames:
+  - Assets/Scenes/MainMenuScene.unity
   - Assets/Scenes/GameScene.unity
   playerPath: D:/Unity Projects/TestTaskGame/test task game.apk

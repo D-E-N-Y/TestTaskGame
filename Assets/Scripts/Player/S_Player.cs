@@ -19,16 +19,21 @@ public class S_Player : MonoBehaviour
 
     // паметры атаки
     [SerializeField] private float shootSpeed;
+    [SerializeField] private float shootRange;
+    [SerializeField] private LayerMask enemy_lm;
     private float shootTime;
     private bool isCanShoot;
     private bool isFindEnemy;
     
     // список врагов, которые можно атаковать
     private List<GameObject> targets = new List<GameObject>();
+    private GameObject currentTarget;
     
     // параметры пули
     [SerializeField] private GameObject ammo;
     [SerializeField] private Transform shootPosition;
+    private Vector3 startSP;
+    private Quaternion startSR;
     
     
     private Animator _anim;
@@ -50,6 +55,8 @@ public class S_Player : MonoBehaviour
         isDeath = false;
 
         shootTime = shootSpeed;
+        startSP = shootPosition.localPosition;
+        startSR = shootPosition.localRotation;
 
         UpdateHealthBar();
     }
@@ -62,14 +69,13 @@ public class S_Player : MonoBehaviour
         
         if(!isCanShoot) return;
 
-        // скорость стрельбы игрока
-        shootTime += Time.deltaTime;
+        isFindEnemy = Physics.CheckSphere(transform.position, shootRange, enemy_lm);
 
-        if(shootTime >= shootSpeed && isFindEnemy)
+        if(isFindEnemy)
         {
-            shootTime = 0;
-
-            Shoot();
+            CheckForEnemies();
+            
+            Attack();
         }
     }
 
@@ -80,17 +86,67 @@ public class S_Player : MonoBehaviour
         Move();
     }
 
-    // метод атаки
-    private void Shoot()
+    private void CheckForEnemies()
     {
-        if(!targets[0]) return;
-
-        Vector3 Direction = targets[0].transform.position - transform.position;
-        Direction.y = 0;
-
-        transform.rotation = Quaternion.LookRotation(Direction);
+        targets.Clear();
         
-        Instantiate(ammo, shootPosition.position, shootPosition.rotation);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, shootRange, enemy_lm);
+        
+        foreach (var unit in hitColliders)
+        {
+            if(unit.gameObject.tag == "Enemy")
+            {
+                targets.Add(unit.gameObject);
+            }
+        }
+
+        FindNearestTarget();
+    }
+
+    private void FindNearestTarget()
+    {
+        currentTarget = targets[0];
+
+        foreach (var unit in targets)
+        {
+            if(Vector3.Distance(currentTarget.transform.position, transform.position) > Vector3.Distance(unit.transform.position, transform.position))
+            {
+                currentTarget = unit;
+            }
+        }
+    }
+
+    // метод атаки
+    private void Attack()
+    {
+        if(!currentTarget) return;
+
+        // скорость стрельбы игрока
+        shootTime += Time.deltaTime;
+        
+        if(shootTime >= shootSpeed)
+        {
+            shootTime = 0;
+
+            Vector3 direction = currentTarget.transform.position - transform.position;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction);
+            
+            direction = currentTarget.transform.position - shootPosition.position;
+
+            // Если угол больше 0, позиция стрельбы смотрит на врага
+            if (direction.y > 0)
+            {
+                shootPosition.LookAt(currentTarget.transform);
+            }
+            else
+            {
+                shootPosition.localPosition = startSP;
+                shootPosition.localRotation = startSR;
+            }
+            
+            Instantiate(ammo, shootPosition.position, shootPosition.rotation);
+        }
     }
 
     // метод движения
@@ -142,29 +198,10 @@ public class S_Player : MonoBehaviour
         hp_bar.value = health / maxHealth;
     }
 
-    
-    private void OnTriggerEnter(Collider other) 
+    // отрисовка зоны атаки
+    private void OnDrawGizmosSelected() 
     {
-        if(other.gameObject.tag == "Enemy")
-        {
-            if(targets.Count == 0) isFindEnemy = true;
-            
-            targets.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other) 
-    {
-        if(other.gameObject.tag == "Enemy")
-        {
-            RemoveTarget(other.gameObject);
-        }
-    }
-
-    public void RemoveTarget(GameObject target)
-    {
-        targets.Remove(target);
-
-        if(targets.Count == 0) isFindEnemy = false;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, shootRange);
     }
 }
