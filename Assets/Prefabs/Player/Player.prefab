@@ -1412,7 +1412,6 @@ GameObject:
   - component: {fileID: 3487777089308683538}
   - component: {fileID: 2523498607010109803}
   - component: {fileID: 7421482698555724545}
-  - component: {fileID: 1997210622700014310}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1525,8 +1524,9 @@ MonoBehaviour:
   speedMove: 3
   _joystick: {fileID: 0}
   maxHealth: 9999
-  hp_bar: {fileID: 3249700186255414618}
+  _healthBar: {fileID: 0}
   _hitParticle: {fileID: 439708745124657376, guid: 20314302c016154488f828f567f31487, type: 3}
+  losePanel: {fileID: 0}
   shootSpeed: 0.3
   shootRange: 7
   enemy_lm:
@@ -1534,27 +1534,8 @@ MonoBehaviour:
     m_Bits: 128
   ammo: {fileID: 7891903891993359832, guid: 425d10fc769437c459ee80cccde8a419, type: 3}
   shootPosition: {fileID: 3468803957030938564}
---- !u!135 &1997210622700014310
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8961315311613404621}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 7
-  m_Center: {x: 0, y: 0, z: 0}
+  shoot: {fileID: 0}
+  die: {fileID: 0}
 --- !u!1 &9054488302374384260
 GameObject:
   m_ObjectHideFlags: 0

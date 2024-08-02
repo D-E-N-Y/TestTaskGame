@@ -6,10 +6,13 @@ public class S_TimerGame : MonoBehaviour
 {
     [SerializeField] private GameObject[] objects;
     [SerializeField] private Text timerText;
+    private AudioSource _audio;
     private int timer;
 
     private void Start() 
     {
+        _audio = GetComponent<AudioSource>();
+
         timer = 3;
 
         StartCoroutine(nameof(Timer));
@@ -19,6 +22,8 @@ public class S_TimerGame : MonoBehaviour
     {
         while(timer != 0)
         {
+            _audio.Play();
+
             timerText.text = timer.ToString();
 
             yield return new WaitForSeconds(1f);

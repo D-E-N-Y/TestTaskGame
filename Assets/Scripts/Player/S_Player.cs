@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class S_Player : MonoBehaviour
 {
     // парметры движения
@@ -35,7 +34,10 @@ public class S_Player : MonoBehaviour
     private Vector3 startSP;
     private Quaternion startSR;
     
-    
+    // параметры звука
+    [SerializeField] AudioClip shoot, die;
+    private AudioSource _audio;
+
     private Animator _anim;
 
     public static S_Player instance;
@@ -50,6 +52,7 @@ public class S_Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _healthBar = GetComponentInChildren<S_HealthBar>();
+        _audio = GetComponent<AudioSource>();
         
         health = maxHealth;
         isDeath = false;
@@ -148,6 +151,10 @@ public class S_Player : MonoBehaviour
                 shootPosition.localRotation = startSR;
             }
             
+            _audio.Stop();
+            _audio.clip = shoot;
+            _audio.Play();
+
             Instantiate(ammo, shootPosition.position, shootPosition.rotation);
         }
     }
@@ -187,6 +194,10 @@ public class S_Player : MonoBehaviour
     private void Death()
     {
         isDeath = true;
+
+        _audio.Stop();
+        _audio.clip = die;
+        _audio.Play();
 
         losePanel.SetActive(true);
         Time.timeScale = 0f;

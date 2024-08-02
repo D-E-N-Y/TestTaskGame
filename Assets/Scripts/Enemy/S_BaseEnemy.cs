@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public abstract class S_BaseEnemy : MonoBehaviour
 {
     // параметры здоровья
     [SerializeField] private float maxHealth;
     [SerializeField] private S_HealthBar _healthBar;
+    [SerializeField] private GameObject _hitDamage;
     private float health;
     private bool isDeath;
     
@@ -26,6 +26,10 @@ public abstract class S_BaseEnemy : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform attackPosition;
     
+    // параметры звуков
+    [SerializeField] AudioClip shoot, die;
+    private AudioSource _audio;
+
     [SerializeField] private LayerMask _lm;
     private Camera _cam;
     private Animator _anim;
@@ -38,6 +42,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
         _anim = GetComponent<Animator>();
         _healthBar = GetComponentInChildren<S_HealthBar>();
         _cam = Camera.main;
+        _audio = GetComponent<AudioSource>();
         player = S_Player.instance.transform;
         
         attackTimer = attackSpeed;
@@ -124,6 +129,10 @@ public abstract class S_BaseEnemy : MonoBehaviour
         {
             attackTimer = 0;
             
+            _audio.Stop();
+            _audio.clip = shoot;
+            _audio.Play();
+            
             Instantiate(bullet, attackPosition.position, attackPosition.rotation);
         }
     }
@@ -142,6 +151,8 @@ public abstract class S_BaseEnemy : MonoBehaviour
     {
         health -= damage;
 
+        Destroy(Instantiate(_hitDamage, transform.position, Quaternion.identity), 0.5f);
+
         _healthBar.UpdateHealthBar(health, maxHealth);
 
         if(health < 0) Death();
@@ -150,11 +161,27 @@ public abstract class S_BaseEnemy : MonoBehaviour
     // метод смерти
     private void Death()
     {
+        PlayDeathSound();
+        
         isDeath = true;
-
         _cam.GetComponent<S_Money>().AddCoin();
 
         Destroy(gameObject);
+    }
+
+    private void PlayDeathSound()
+    {
+        // Создаем временный объект для проигрывания звука
+        GameObject tempAudioSource = new GameObject("TempAudio");
+        AudioSource audioSource = tempAudioSource.AddComponent<AudioSource>();
+
+        // Настраиваем AudioSource
+        audioSource.clip = die;
+        audioSource.volume = 0.25f;
+        audioSource.Play();
+
+        // Уничтожаем временный объект после завершения проигрывания звука
+        Destroy(tempAudioSource, die.length);
     }
 
     // отрисовка зоны атаки
