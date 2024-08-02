@@ -177,7 +177,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
 
         // Настраиваем AudioSource
         audioSource.clip = die;
-        audioSource.volume = 0.25f;
+        audioSource.volume = 0.5f;
         audioSource.Play();
 
         // Уничтожаем временный объект после завершения проигрывания звука
