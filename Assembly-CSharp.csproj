@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Settings\S_MainMenu.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Scripts\Enemy\S_SpawnEnemy.cs" />
+    <Compile Include="Assets\Scripts\HealthBar\S_HealthBar.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Scripts\Player\S_Player.cs" />
     <Compile Include="Assets\Scripts\Money\S_Money.cs" />

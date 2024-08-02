@@ -11,12 +11,11 @@ public class S_Player : MonoBehaviour
 
     // параметры жизни
     [SerializeField] private float maxHealth;
-    [SerializeField] private Slider hp_bar;
+    [SerializeField] private S_HealthBar _healthBar;
     [SerializeField] private GameObject _hitParticle;
     [SerializeField] private GameObject losePanel;
     private float health;
     private bool isDeath;
-    private Camera _cam;
 
     // паметры атаки
     [SerializeField] private float shootSpeed;
@@ -50,7 +49,7 @@ public class S_Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
-        _cam = Camera.main;
+        _healthBar = GetComponentInChildren<S_HealthBar>();
         
         health = maxHealth;
         isDeath = false;
@@ -59,14 +58,12 @@ public class S_Player : MonoBehaviour
         startSP = shootPosition.localPosition;
         startSR = shootPosition.localRotation;
 
-        UpdateHealthBar();
+        _healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     private void Update() 
     {
         if(isDeath) return;
-        
-        RotateHealthBar();
         
         if(!isCanShoot) return;
 
@@ -181,7 +178,7 @@ public class S_Player : MonoBehaviour
         
         Destroy(Instantiate(_hitParticle, transform.position, _hitParticle.transform.rotation), 1f);
 
-        UpdateHealthBar();
+        _healthBar.UpdateHealthBar(health, maxHealth);
     
         if(health < 0) Death();
     }
@@ -193,18 +190,6 @@ public class S_Player : MonoBehaviour
 
         losePanel.SetActive(true);
         Time.timeScale = 0f;
-    }
-
-    // метод вращения полоски хп в сторону камеры
-    private void RotateHealthBar()
-    {
-        hp_bar.transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
-    }
-    
-    // обновление значения в полоске хп
-    private void UpdateHealthBar()
-    {
-        hp_bar.value = health / maxHealth;
     }
 
     // отрисовка зоны атаки

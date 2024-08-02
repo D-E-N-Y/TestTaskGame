@@ -377,6 +377,7 @@
 "Assets/Scripts/Enemy/S_FlyingEnemy.cs"
 "Assets/Scripts/Enemy/S_GroundEnemy.cs"
 "Assets/Scripts/Enemy/S_SpawnEnemy.cs"
+"Assets/Scripts/HealthBar/S_HealthBar.cs"
 "Assets/Scripts/Money/S_Money.cs"
 "Assets/Scripts/Player/S_Player.cs"
 "Assets/Scripts/Settings/S_MainMenu.cs"

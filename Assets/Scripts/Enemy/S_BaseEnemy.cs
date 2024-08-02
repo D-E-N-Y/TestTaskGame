@@ -7,7 +7,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
 {
     // параметры здоровья
     [SerializeField] private float maxHealth;
-    [SerializeField] private Slider hp_bar;
+    [SerializeField] private S_HealthBar _healthBar;
     private float health;
     private bool isDeath;
     
@@ -36,6 +36,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _anim = GetComponent<Animator>();
+        _healthBar = GetComponentInChildren<S_HealthBar>();
         _cam = Camera.main;
         player = S_Player.instance.transform;
         
@@ -46,7 +47,7 @@ public abstract class S_BaseEnemy : MonoBehaviour
         isBehavior = true;
         isMoving = false;
 
-        UpdateHealthBar();
+        _healthBar.UpdateHealthBar(health, maxHealth);
 
         // в начале игры запускаем обычное поведение врага
         StartCoroutine(nameof(Behavior));
@@ -55,8 +56,6 @@ public abstract class S_BaseEnemy : MonoBehaviour
     private void Update() 
     {
         if(isDeath) return;
-        
-        RotateHealthBar();
 
         // область атаки противника
         isPlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, _lm);
@@ -137,25 +136,13 @@ public abstract class S_BaseEnemy : MonoBehaviour
             other.gameObject.GetComponent<S_Player>().GetDamage(meleeDamage);
         }
     }
-
-    // поворот полоски хп в сторону камеры
-    private void RotateHealthBar()
-    {
-        hp_bar.transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
-    }
-
-    // обновление полоски хп
-    private void UpdateHealthBar()
-    {
-        hp_bar.value = health / maxHealth;
-    }
     
     // получание урона
     public void GetDamage(float damage)
     {
         health -= damage;
 
-        UpdateHealthBar();
+        _healthBar.UpdateHealthBar(health, maxHealth);
 
         if(health < 0) Death();
     }
